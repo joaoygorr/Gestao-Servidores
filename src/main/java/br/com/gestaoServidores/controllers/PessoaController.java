@@ -1,5 +1,6 @@
 package br.com.gestaoServidores.controllers;
 
+import br.com.gestaoServidores.mappers.PessoaMapper;
 import br.com.gestaoServidores.record.pessoa.PessoaDTO;
 import br.com.gestaoServidores.services.pessoa.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,9 +23,12 @@ public class PessoaController {
 
     private final PessoaService pessoaService;
 
+    private final PessoaMapper pessoaMapper;
+
     @PostMapping
     @Operation(summary = "Criar uma nova pessoa", description = "Cria um novo registro de pessoa e retorna a pessoa criada.")
     public ResponseEntity<PessoaDTO> createPerson(@RequestBody @Valid PessoaDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.pessoaService.createPerson(dto));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.pessoaMapper.toDTO(this.pessoaService.createPerson(this.pessoaMapper.toEntity(dto))));
     }
 }

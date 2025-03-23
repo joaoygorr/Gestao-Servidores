@@ -1,7 +1,7 @@
 package br.com.gestaoServidores.services.pessoa;
 
-import br.com.gestaoServidores.record.pessoa.PessoaDTO;
+import br.com.gestaoServidores.modules.Pessoa;
 
 public interface PessoaService {
-    PessoaDTO createPerson(PessoaDTO pessoaRecord);
+    Pessoa createPerson(Pessoa pessoa);
 }

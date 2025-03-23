@@ -24,4 +24,9 @@ public class Cidade {
 
     @Column(name = "cid_uf", nullable = false, length = 2)
     private String uf;
+
+    public Cidade(String nome, String uf) {
+        this.nome = nome;
+        this.uf = uf;
+    }
 }

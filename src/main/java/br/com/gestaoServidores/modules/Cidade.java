@@ -19,7 +19,7 @@ public class Cidade {
     @Column(name = "cid_id")
     private Long id;
 
-    @Column(name = "cid_nome", nullable = false, length = 200)
+    @Column(name = "cid_nome", nullable = false, length = 200, unique = true)
     private String nome;
 
     @Column(name = "cid_uf", nullable = false, length = 2)

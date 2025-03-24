@@ -1,5 +1,6 @@
 package br.com.gestaoServidores.services.unidade;
 
+import br.com.gestaoServidores.core.exceptions.Exception404;
 import br.com.gestaoServidores.modules.Cidade;
 import br.com.gestaoServidores.modules.Endereco;
 import br.com.gestaoServidores.modules.Unidade;
@@ -34,5 +35,10 @@ public class UnidadeServiceImpl implements UnidadeService {
             }
         }
         return this.unidadeRepository.save(unidade);
+    }
+
+    @Override
+    public Unidade findByUnit(Long id) {
+        return this.unidadeRepository.findById(id).orElseThrow(() -> new Exception404("Unidade não encontrada"));
     }
 }

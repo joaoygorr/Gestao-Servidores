@@ -35,4 +35,9 @@ public class PessoaServiceImpl implements PessoaService {
         }
         return this.pessoaRepository.save(pessoa);
     }
+
+    @Override
+    public Pessoa findByPerson(Long id) {
+        return this.pessoaRepository.findById(id).orElseThrow(() -> new Exception404("Pessoa não encontrada"));
+    }
 }

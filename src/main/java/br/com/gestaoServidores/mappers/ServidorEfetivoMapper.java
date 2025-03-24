@@ -1,15 +1,30 @@
 package br.com.gestaoServidores.mappers;
 
-import br.com.gestaoServidores.controllers.ServidorEfetivoController;
+import br.com.gestaoServidores.core.exceptions.Exception404;
+import br.com.gestaoServidores.modules.Pessoa;
+import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
+import br.com.gestaoServidores.repositories.PessoaRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedSourcePolicy = ReportingPolicy.ERROR)
-public interface ServidorEfetivoMapper {
+public abstract class ServidorEfetivoMapper {
 
-    ServidorEfetivoController toEntity(ServidorEfetivoDTO dto);
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
-    ServidorEfetivoDTO toDTO(ServidorEfetivoController entity);
+    public abstract ServidorEfetivo toEntity(ServidorEfetivoDTO dto);
+
+    public abstract ServidorEfetivoDTO toDTO(ServidorEfetivo entity);
+
+    Pessoa mapPessoa(Long id) {
+       return this.pessoaRepository.findById(id).orElseThrow(() -> new Exception404("Pessoa não encontrada"));
+    }
+
+    Long mapId(Pessoa entity) {
+        return entity.getId();
+    }
 }

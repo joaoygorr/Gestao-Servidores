@@ -1,4 +1,4 @@
-package br.com.gestaoServidores.configuration;
+package br.com.gestaoServidores.core.configuration;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

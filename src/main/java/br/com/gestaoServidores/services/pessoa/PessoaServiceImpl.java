@@ -1,5 +1,6 @@
 package br.com.gestaoServidores.services.pessoa;
 
+import br.com.gestaoServidores.core.exceptions.Exception404;
 import br.com.gestaoServidores.modules.Cidade;
 import br.com.gestaoServidores.modules.Endereco;
 import br.com.gestaoServidores.modules.Pessoa;

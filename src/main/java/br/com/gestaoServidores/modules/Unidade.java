@@ -2,6 +2,7 @@ package br.com.gestaoServidores.modules;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -25,7 +27,7 @@ public class Unidade {
     @Column(name = "unid_sigla", nullable = false, length = 20)
     private String sigla;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "unidade_endereco",
             joinColumns = @JoinColumn(name = "unid_id"),

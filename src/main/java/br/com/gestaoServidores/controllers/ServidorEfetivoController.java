@@ -9,10 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/servidorEfetivo")
@@ -33,4 +30,10 @@ public class ServidorEfetivoController {
                         this.efetivoService.createEffectiveServer(this.efetivoMapper.toEntity(dto))));
     }
 
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Exclusão de um servidor efetivo", description = "Exclui um registro de servidor efetivo")
+    public ResponseEntity<Void> deleteEffectiveServer(@PathVariable Long id) {
+        this.efetivoService.deleteEffectiveServer(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.gestaoServidores.services.servidorEfetivo;
 
+import br.com.gestaoServidores.core.exceptions.Exception404;
 import br.com.gestaoServidores.modules.Pessoa;
 import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.repositories.ServidorEfetivoRepository;
@@ -19,8 +20,18 @@ public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
     @Transactional
     @Override
     public ServidorEfetivo createEffectiveServer(ServidorEfetivo entity) {
-        Pessoa pessoa = this.pessoaService.findByPerson(entity.getPessoa().getId());
-        entity.setPessoa(pessoa);
         return this.servidorEfetivoRepository.save(entity);
+    }
+
+    @Override
+    public ServidorEfetivo findByEffectiveServer(Long id) {
+        return this.servidorEfetivoRepository.findById(id)
+                .orElseThrow(() -> new Exception404("Servidor Efetivo não encontrado"));
+    }
+
+    @Override
+    public void deleteEffectiveServer(Long id) {
+        findByEffectiveServer(id);
+        this.servidorEfetivoRepository.deleteById(id);
     }
 }

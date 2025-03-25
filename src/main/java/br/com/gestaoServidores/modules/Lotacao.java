@@ -2,6 +2,7 @@ package br.com.gestaoServidores.modules;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -9,10 +10,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class lotacao {
+public class Lotacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

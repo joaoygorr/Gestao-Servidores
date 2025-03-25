@@ -1,8 +1,10 @@
 package br.com.gestaoServidores.services.servidorEfetivo;
 
 import br.com.gestaoServidores.core.exceptions.Exception404;
+import br.com.gestaoServidores.mappers.ServidorEfetivoMapper;
 import br.com.gestaoServidores.modules.Pessoa;
 import br.com.gestaoServidores.modules.ServidorEfetivo;
+import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.repositories.ServidorEfetivoRepository;
 import br.com.gestaoServidores.services.pessoa.PessoaService;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
 
-    private final PessoaService pessoaService;
-
     private final ServidorEfetivoRepository servidorEfetivoRepository;
+
+    private final ServidorEfetivoMapper efetivoMapper;
 
     @Transactional
     @Override
@@ -33,5 +35,13 @@ public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
     public void deleteEffectiveServer(Long id) {
         findByEffectiveServer(id);
         this.servidorEfetivoRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public ServidorEfetivo updateEffectiveServer(Long id, ServidorEfetivoDTO dto) {
+        ServidorEfetivo efetivo = findByEffectiveServer(id);
+        efetivoMapper.updateServer(dto, efetivo);
+        return this.servidorEfetivoRepository.save(efetivo);
     }
 }

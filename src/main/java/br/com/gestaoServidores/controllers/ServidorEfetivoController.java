@@ -36,4 +36,12 @@ public class ServidorEfetivoController {
         this.efetivoService.deleteEffectiveServer(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualização de um servidor efetivo", description = "Atualiza informações de um servidor efetivo")
+    public ResponseEntity<ServidorEfetivoDTO> updateEffectiveServer(@PathVariable Long id,
+                                                                    @RequestBody @Valid ServidorEfetivoDTO dto) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(this.efetivoMapper.toDTO(this.efetivoService.updateEffectiveServer(id, dto)));
+    }
 }

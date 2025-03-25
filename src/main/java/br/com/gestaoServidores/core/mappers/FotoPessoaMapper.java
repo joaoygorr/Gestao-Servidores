@@ -10,7 +10,7 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public abstract class FotoPessoaMapper {
 
-    @Mapping(target = "image", ignore = true)
+    @Mapping(target = "images", ignore = true)
     public abstract FotoPessoaDTO toDTO(FotoPessoa fotoPessoa);
 
     Long mapId(Pessoa entity) {

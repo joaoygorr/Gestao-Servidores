@@ -1,6 +1,7 @@
 package br.com.gestaoServidores.controllers;
 
 import br.com.gestaoServidores.core.mappers.FotoPessoaMapper;
+import br.com.gestaoServidores.modules.FotoPessoa;
 import br.com.gestaoServidores.record.fotoPessoa.FotoPessoaDTO;
 import br.com.gestaoServidores.services.fotoPessoa.FotoPessoaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/fotoPessoa")
@@ -22,10 +26,13 @@ public class FotoPessoaController {
 
     @PostMapping(consumes = "multipart/form-data")
     @Operation(summary = "Criar uma nova foto pessoa", description = "Cria um novo registro de foto pessoa e retorna a foto criada")
-    public ResponseEntity<FotoPessoaDTO> createImagePerson(@ModelAttribute FotoPessoaDTO dto) throws Exception {
+    public ResponseEntity<List<FotoPessoaDTO>> createImagePerson(@ModelAttribute FotoPessoaDTO dto) throws Exception {
         try {
-            var x = this.fotoPessoaMapper.toDTO(this.fotoPessoaService.upload(dto));
-            return ResponseEntity.status(HttpStatus.CREATED).body(x);
+            List<FotoPessoa> fotoPessoas = this.fotoPessoaService.upload(dto);
+            List<FotoPessoaDTO> fotoPessoaDTOs = fotoPessoas.stream()
+                    .map(fotoPessoaMapper::toDTO)
+                    .collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.CREATED).body(fotoPessoaDTOs);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }

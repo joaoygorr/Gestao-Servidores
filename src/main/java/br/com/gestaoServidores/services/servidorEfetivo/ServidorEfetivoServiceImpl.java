@@ -2,11 +2,9 @@ package br.com.gestaoServidores.services.servidorEfetivo;
 
 import br.com.gestaoServidores.core.exceptions.Exception404;
 import br.com.gestaoServidores.mappers.ServidorEfetivoMapper;
-import br.com.gestaoServidores.modules.Pessoa;
 import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.repositories.ServidorEfetivoRepository;
-import br.com.gestaoServidores.services.pessoa.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +31,7 @@ public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
                 .orElseThrow(() -> new Exception404("Servidor Efetivo não encontrado"));
     }
 
+    @Transactional
     @Override
     public void deleteEffectiveServer(Long id) {
         findByEffectiveServer(id);

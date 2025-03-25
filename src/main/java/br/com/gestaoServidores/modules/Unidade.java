@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Set;
 
@@ -28,6 +30,7 @@ public class Unidade {
     private String sigla;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(
             name = "unidade_endereco",
             joinColumns = @JoinColumn(name = "unid_id"),

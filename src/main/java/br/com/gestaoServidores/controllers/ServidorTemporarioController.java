@@ -1,6 +1,6 @@
 package br.com.gestaoServidores.controllers;
 
-import br.com.gestaoServidores.mappers.ServidorTemporarioMapper;
+import br.com.gestaoServidores.core.mappers.ServidorTemporarioMapper;
 import br.com.gestaoServidores.modules.ServidorTemporario;
 import br.com.gestaoServidores.record.servidorTemporario.ServidorTemporarioDTO;
 import br.com.gestaoServidores.services.servidorTemporario.ServidorTemporarioService;

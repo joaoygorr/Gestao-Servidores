@@ -1,6 +1,6 @@
 package br.com.gestaoServidores.controllers;
 
-import br.com.gestaoServidores.mappers.PessoaMapper;
+import br.com.gestaoServidores.core.mappers.PessoaMapper;
 import br.com.gestaoServidores.record.pessoa.PessoaDTO;
 import br.com.gestaoServidores.services.pessoa.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;

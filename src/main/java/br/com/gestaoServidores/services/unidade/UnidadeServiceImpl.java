@@ -1,7 +1,7 @@
 package br.com.gestaoServidores.services.unidade;
 
 import br.com.gestaoServidores.core.exceptions.Exception404;
-import br.com.gestaoServidores.mappers.UnidadeMapper;
+import br.com.gestaoServidores.core.mappers.UnidadeMapper;
 import br.com.gestaoServidores.modules.Cidade;
 import br.com.gestaoServidores.modules.Endereco;
 import br.com.gestaoServidores.modules.Unidade;

@@ -1,6 +1,6 @@
 package br.com.gestaoServidores.controllers;
 
-import br.com.gestaoServidores.mappers.UnidadeMapper;
+import br.com.gestaoServidores.core.mappers.UnidadeMapper;
 import br.com.gestaoServidores.modules.Unidade;
 import br.com.gestaoServidores.record.unidade.UnidadeDTO;
 import br.com.gestaoServidores.services.unidade.UnidadeService;

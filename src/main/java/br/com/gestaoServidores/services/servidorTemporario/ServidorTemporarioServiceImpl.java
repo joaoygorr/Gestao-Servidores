@@ -1,7 +1,7 @@
 package br.com.gestaoServidores.services.servidorTemporario;
 
 import br.com.gestaoServidores.core.exceptions.Exception404;
-import br.com.gestaoServidores.mappers.ServidorTemporarioMapper;
+import br.com.gestaoServidores.core.mappers.ServidorTemporarioMapper;
 import br.com.gestaoServidores.modules.ServidorTemporario;
 import br.com.gestaoServidores.record.servidorTemporario.ServidorTemporarioDTO;
 import br.com.gestaoServidores.repositories.ServidorTemporarioRepository;

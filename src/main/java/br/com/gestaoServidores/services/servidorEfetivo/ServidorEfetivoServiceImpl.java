@@ -1,7 +1,7 @@
 package br.com.gestaoServidores.services.servidorEfetivo;
 
 import br.com.gestaoServidores.core.exceptions.Exception404;
-import br.com.gestaoServidores.mappers.ServidorEfetivoMapper;
+import br.com.gestaoServidores.core.mappers.ServidorEfetivoMapper;
 import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.repositories.ServidorEfetivoRepository;

@@ -1,4 +1,4 @@
-package br.com.gestaoServidores.mappers;
+package br.com.gestaoServidores.core.mappers;
 
 import br.com.gestaoServidores.modules.Cidade;
 import br.com.gestaoServidores.record.cidade.CidadeDTO;

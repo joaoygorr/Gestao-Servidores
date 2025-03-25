@@ -1,4 +1,4 @@
-package br.com.gestaoServidores.mappers;
+package br.com.gestaoServidores.core.mappers;
 
 import br.com.gestaoServidores.core.exceptions.Exception404;
 import br.com.gestaoServidores.modules.Pessoa;

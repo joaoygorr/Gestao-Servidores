@@ -24,6 +24,8 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public Pessoa createPerson(Pessoa pessoa) {
         for (Endereco endereco : pessoa.getEnderecos()) {
+            // TODO: aplicar função lambda
+            // TODO: separar serviços cidade de pessoa
             Cidade cidade = endereco.getCidade();
             Optional<Cidade> cidadeOptional = this.cidadeRepository.findByNome(cidade.getNome());
 

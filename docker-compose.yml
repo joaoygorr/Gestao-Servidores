@@ -1,7 +1,6 @@
 services:
   database:
     container_name: database
-    restart: always
     image: postgres
 
     ports:
@@ -25,7 +24,6 @@ services:
     command: server /data --console-address ":9001"
     volumes:
       - minio_data:/data
-    restart: always
 
 volumes:
   minio_data:

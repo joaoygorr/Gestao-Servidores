@@ -1,9 +1,7 @@
 package br.com.gestaoServidores.controllers;
 
 import br.com.gestaoServidores.mappers.UnidadeMapper;
-import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.modules.Unidade;
-import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.record.unidade.UnidadeDTO;
 import br.com.gestaoServidores.services.unidade.UnidadeService;
 import io.swagger.v3.oas.annotations.Operation;

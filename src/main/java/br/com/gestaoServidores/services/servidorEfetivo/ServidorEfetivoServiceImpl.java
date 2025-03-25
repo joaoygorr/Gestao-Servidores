@@ -8,6 +8,8 @@ import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.repositories.ServidorEfetivoRepository;
 import br.com.gestaoServidores.services.pessoa.PessoaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,5 +45,10 @@ public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
         ServidorEfetivo efetivo = findByEffectiveServer(id);
         efetivoMapper.updateServer(dto, efetivo);
         return this.servidorEfetivoRepository.save(efetivo);
+    }
+
+    @Override
+    public Page<ServidorEfetivo> findAllEffective(Pageable pageable) {
+        return this.servidorEfetivoRepository.findAll(pageable);
     }
 }

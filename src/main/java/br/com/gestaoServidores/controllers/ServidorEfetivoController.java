@@ -1,12 +1,15 @@
 package br.com.gestaoServidores.controllers;
 
 import br.com.gestaoServidores.mappers.ServidorEfetivoMapper;
+import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.services.servidorEfetivo.ServidorEfetivoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +46,19 @@ public class ServidorEfetivoController {
                                                                     @RequestBody @Valid ServidorEfetivoDTO dto) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(this.efetivoMapper.toDTO(this.efetivoService.updateEffectiveServer(id, dto)));
+    }
+
+    @GetMapping
+    @Operation(summary = "Listar servidores efetivos", description = "Retorna uma lista paginada de servidores efetivos")
+    public ResponseEntity<Page<ServidorEfetivoDTO>> getAllEffectiveServer(Pageable pageable) {
+        Page<ServidorEfetivo> efetivos = this.efetivoService.findAllEffective(pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(efetivos.map(this.efetivoMapper::toDTO));
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar um servidor efetivo por ID", description = "Retorna os detalhes de um servidor efetivo pelo ID informado")
+    public ResponseEntity<ServidorEfetivoDTO> getByIdEffective(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.efetivoMapper.toDTO(this.efetivoService.findByEffectiveServer(id)));
     }
 }

@@ -47,7 +47,7 @@ public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
     }
 
     @Override
-    public Page<ServidorEfetivo> findAllEffective(Pageable pageable) {
+    public Page<ServidorEfetivo> findAllEffectiveServer(Pageable pageable) {
         return this.servidorEfetivoRepository.findAll(pageable);
     }
 }

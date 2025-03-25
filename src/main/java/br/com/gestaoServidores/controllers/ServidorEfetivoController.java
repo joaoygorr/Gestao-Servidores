@@ -51,13 +51,13 @@ public class ServidorEfetivoController {
     @GetMapping
     @Operation(summary = "Listar servidores efetivos", description = "Retorna uma lista paginada de servidores efetivos")
     public ResponseEntity<Page<ServidorEfetivoDTO>> getAllEffectiveServer(Pageable pageable) {
-        Page<ServidorEfetivo> efetivos = this.efetivoService.findAllEffective(pageable);
+        Page<ServidorEfetivo> efetivos = this.efetivoService.findAllEffectiveServer(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(efetivos.map(this.efetivoMapper::toDTO));
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Buscar um servidor efetivo por ID", description = "Retorna os detalhes de um servidor efetivo pelo ID informado")
-    public ResponseEntity<ServidorEfetivoDTO> getByIdEffective(@PathVariable Long id) {
+    public ResponseEntity<ServidorEfetivoDTO> getByIdEffectiveServer(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.efetivoMapper.toDTO(this.efetivoService.findByEffectiveServer(id)));
     }

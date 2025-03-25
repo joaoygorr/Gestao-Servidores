@@ -15,5 +15,5 @@ public interface ServidorEfetivoService {
 
     ServidorEfetivo updateEffectiveServer(Long id, ServidorEfetivoDTO dto);
 
-    Page<ServidorEfetivo> findAllEffective(Pageable pageable);
+    Page<ServidorEfetivo> findAllEffectiveServer(Pageable pageable);
 }

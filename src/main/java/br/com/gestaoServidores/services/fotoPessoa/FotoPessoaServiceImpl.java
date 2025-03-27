@@ -29,22 +29,7 @@ public class FotoPessoaServiceImpl implements FotoPessoaService {
     @Override
     public List<FotoPessoa> upload(FotoPessoaDTO dto) throws Exception {
         Pessoa pessoa = this.pessoaService.findByPerson(dto.pessoa());
-//
-//        InputStream fileStrem = dto.image().getInputStream();
-//        String fileName = dto.image().getOriginalFilename();
-//
-//        if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(BUCKET_NAME).build())) {
-//            minioClient.makeBucket(MakeBucketArgs.builder().bucket(BUCKET_NAME).build());
-//        }
-//
-//        PutObjectArgs putObjectArgs = PutObjectArgs.builder()
-//                .bucket(BUCKET_NAME)
-//                .object(fileName)
-//                .stream(fileStrem, fileStrem.available(), -1)
-//                .contentType(dto.image().getContentType())
-//                .build();
-//
-//        ObjectWriteResponse res = minioClient.putObject(putObjectArgs);
+
         List<FotoPessoa> fotoPessoas = new ArrayList<>();
         if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(BUCKET_NAME).build())) {
             minioClient.makeBucket(MakeBucketArgs.builder().bucket(BUCKET_NAME).build());

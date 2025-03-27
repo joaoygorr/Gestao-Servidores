@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/fotoPessoa")
@@ -31,7 +30,7 @@ public class FotoPessoaController {
             List<FotoPessoa> fotoPessoas = this.fotoPessoaService.upload(dto);
             List<FotoPessoaDTO> fotoPessoaDTOs = fotoPessoas.stream()
                     .map(fotoPessoaMapper::toDTO)
-                    .collect(Collectors.toList());
+                    .toList();
             return ResponseEntity.status(HttpStatus.CREATED).body(fotoPessoaDTOs);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
@@ -50,4 +52,10 @@ public class ServidorEfetivoServiceImpl implements ServidorEfetivoService {
     public Page<ServidorEfetivo> findAllEffectiveServer(Pageable pageable) {
         return this.servidorEfetivoRepository.findAll(pageable);
     }
+
+    @Override
+    public List<ServidorEfetivo> findByServidorAndPessoaNome(String nome) {
+        return this.servidorEfetivoRepository.findByPessoaNomeWithFetch(nome);
+    }
+
 }

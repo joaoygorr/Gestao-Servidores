@@ -5,6 +5,8 @@ import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ServidorEfetivoService {
 
     ServidorEfetivo createEffectiveServer(ServidorEfetivo entity);
@@ -16,4 +18,6 @@ public interface ServidorEfetivoService {
     ServidorEfetivo updateEffectiveServer(Long id, ServidorEfetivoDTO dto);
 
     Page<ServidorEfetivo> findAllEffectiveServer(Pageable pageable);
+
+    List<ServidorEfetivo> findByServidorAndPessoaNome(String nome);
 }

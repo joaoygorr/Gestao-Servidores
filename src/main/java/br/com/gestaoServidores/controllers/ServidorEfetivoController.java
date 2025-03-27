@@ -3,6 +3,7 @@ package br.com.gestaoServidores.controllers;
 import br.com.gestaoServidores.core.mappers.ServidorEfetivoMapper;
 import br.com.gestaoServidores.modules.ServidorEfetivo;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
+import br.com.gestaoServidores.record.servidorEfetivo.ServidorEnderecoDTO;
 import br.com.gestaoServidores.services.servidorEfetivo.ServidorEfetivoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/servidorEfetivo")
@@ -60,5 +63,12 @@ public class ServidorEfetivoController {
     public ResponseEntity<ServidorEfetivoDTO> getByIdEffectiveServer(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.efetivoMapper.toDTO(this.efetivoService.findByEffectiveServer(id)));
+    }
+
+    @GetMapping("/enderecoFuncional")
+    @Operation(summary = "Buscar um servidor pelo nome", description = "Retorna o nome e o endereço funcional do servidor")
+    public ResponseEntity<List<ServidorEnderecoDTO>> getByServerAndPersonName(@RequestParam String nome) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(this.efetivoMapper.toServidorEnderecoList(this.efetivoService.findByServidorAndPessoaNome(nome)));
     }
 }

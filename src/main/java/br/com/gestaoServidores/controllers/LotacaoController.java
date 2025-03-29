@@ -5,6 +5,7 @@ import br.com.gestaoServidores.modules.Lotacao;
 import br.com.gestaoServidores.record.lotacao.LotacaoDTO;
 import br.com.gestaoServidores.services.lotacao.LotacaoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Lotacao")
+@RequestMapping("/lotacao")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 @Tag(name = "Lotação", description = "Endpoint relacionado a lotação")
 public class LotacaoController {
 

@@ -5,6 +5,7 @@ import br.com.gestaoServidores.modules.FotoPessoa;
 import br.com.gestaoServidores.record.fotoPessoa.FotoPessoaDTO;
 import br.com.gestaoServidores.services.fotoPessoa.FotoPessoaService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

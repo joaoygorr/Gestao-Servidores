@@ -4,6 +4,7 @@ import br.com.gestaoServidores.core.mappers.PessoaMapper;
 import br.com.gestaoServidores.record.pessoa.PessoaDTO;
 import br.com.gestaoServidores.services.pessoa.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/pessoa")
 @RequiredArgsConstructor
-//@SecurityRequirement(name = "bearer-key")
+@SecurityRequirement(name = "bearer-key")
 @Tag(name = "Pessoa", description = "Endpoint relacionado a pessoa")
 public class PessoaController {
 

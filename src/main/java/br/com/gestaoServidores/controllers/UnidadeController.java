@@ -5,6 +5,7 @@ import br.com.gestaoServidores.modules.Unidade;
 import br.com.gestaoServidores.record.unidade.UnidadeDTO;
 import br.com.gestaoServidores.services.unidade.UnidadeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/unidade")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 @Tag(name = "Unidade", description = "Endpoint relacionado a unidade")
 public class UnidadeController {
 

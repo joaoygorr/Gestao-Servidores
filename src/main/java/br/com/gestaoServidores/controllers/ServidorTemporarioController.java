@@ -5,6 +5,7 @@ import br.com.gestaoServidores.modules.ServidorTemporario;
 import br.com.gestaoServidores.record.servidorTemporario.ServidorTemporarioDTO;
 import br.com.gestaoServidores.services.servidorTemporario.ServidorTemporarioService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/servidorTemporario")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 @Tag(name = "Servidor Temporário", description = "Endpoint relacionado a servidores temporários")
 public class ServidorTemporarioController {
 

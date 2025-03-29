@@ -8,4 +8,6 @@ public interface UserService {
     UserAuthDTO login(User user);
 
     UserAuthDTO register(User user);
+
+    User getLoggedUser();
 }

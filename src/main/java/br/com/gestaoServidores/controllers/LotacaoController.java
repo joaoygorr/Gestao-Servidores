@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Lotação", description = "Endpoint relacionado a lotação")
 public class LotacaoController {
 
-
     private final LotacaoMapper lotacaoMapper;
 
     private final LotacaoService lotacaoService;

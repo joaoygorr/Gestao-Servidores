@@ -44,4 +44,8 @@ public class Pessoa {
             inverseJoinColumns = @JoinColumn(name = "end_id")
     )
     private Set<Endereco> enderecos;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

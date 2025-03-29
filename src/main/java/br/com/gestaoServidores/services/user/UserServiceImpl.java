@@ -7,6 +7,8 @@ import br.com.gestaoServidores.record.user.UserAuthDTO;
 import br.com.gestaoServidores.repositories.UserRepository;
 import br.com.gestaoServidores.services.token.TokenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +52,17 @@ public class UserServiceImpl implements UserService {
         }
 
         throw new Exception401("Credenciais inválidas");
+    }
+
+    @Override
+    public User getLoggedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return Optional.ofNullable(authentication)
+                .filter(Authentication::isAuthenticated)
+                .map(Authentication::getPrincipal)
+                .filter(principal -> principal instanceof User)
+                .map(principal -> (User) principal)
+                .orElseThrow(() -> new RuntimeException("Usuário não autenticado ou principal inválido."));
     }
 }

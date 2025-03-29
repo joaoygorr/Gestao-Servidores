@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
 
 @Service
 public class TokenServiceImpl implements TokenService {
@@ -42,6 +43,15 @@ public class TokenServiceImpl implements TokenService {
         } catch (JWTVerificationException exception) {
             return null;
         }
+    }
+
+    @Override
+    public String generateRefreshToken(String email) {
+        return JWT.create()
+                .withSubject(email)
+                .withIssuedAt(new Date())
+                .withExpiresAt(this.generateExpirationDate())
+                .sign(Algorithm.HMAC256(secret));
     }
 
     private Instant generateExpirationDate() {

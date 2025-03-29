@@ -1,7 +1,6 @@
 package br.com.gestaoServidores.core.configuration;
 
 import br.com.gestaoServidores.core.filter.SecurityFilter;
-import br.com.gestaoServidores.services.token.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

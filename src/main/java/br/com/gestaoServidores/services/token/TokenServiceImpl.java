@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 @Service
@@ -21,12 +22,10 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String generateToken(User user) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-
-            return JWT.create().withIssuer("login-auth-api")
+            return JWT.create().withIssuer("auth-api")
                     .withSubject(user.getEmail())
                     .withExpiresAt(this.generateExpirationDate())
-                    .sign(algorithm);
+                    .sign(Algorithm.HMAC256(secret));
 
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Error na autenticação");
@@ -36,20 +35,17 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String validateToken(String token) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-
-            return JWT.require(algorithm)
-                    .withIssuer("login-auth-api")
+            return JWT.require(Algorithm.HMAC256(secret))
+                    .withIssuer("auth-api")
                     .build()
                     .verify(token)
                     .getSubject();
-
         } catch (JWTVerificationException exception) {
             return null;
         }
     }
 
     private Instant generateExpirationDate() {
-        return LocalDateTime.now().plusMinutes(5).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusMinutes(5).atZone(ZoneId.systemDefault()).toInstant();
     }
 }

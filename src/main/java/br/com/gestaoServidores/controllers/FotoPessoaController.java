@@ -36,4 +36,14 @@ public class FotoPessoaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Busca uma imagem pelo seu nome", description = "Retorna um link com duração de 5 minutos")
+    public Object getImageByName(@RequestParam String image) {
+        try {
+            return this.fotoPessoaService.getImageById(image);
+        } catch (Exception e) {
+            return new Exception(e.getMessage());
+        }
+    }
 }

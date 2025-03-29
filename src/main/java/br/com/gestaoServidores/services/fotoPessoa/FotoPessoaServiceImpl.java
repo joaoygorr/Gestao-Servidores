@@ -6,6 +6,7 @@ import br.com.gestaoServidores.record.fotoPessoa.FotoPessoaDTO;
 import br.com.gestaoServidores.repositories.FotoPessoaRepository;
 import br.com.gestaoServidores.services.pessoa.PessoaService;
 import io.minio.*;
+import io.minio.http.Method;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +35,7 @@ public class FotoPessoaServiceImpl implements FotoPessoaService {
         if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(BUCKET_NAME).build())) {
             minioClient.makeBucket(MakeBucketArgs.builder().bucket(BUCKET_NAME).build());
         }
+
         for (MultipartFile image : dto.images()) {
             InputStream fileStream = image.getInputStream();
             String fileName = image.getOriginalFilename();
@@ -51,5 +53,17 @@ public class FotoPessoaServiceImpl implements FotoPessoaService {
             fotoPessoas.add(this.fotoPessoaRepository.save(fotoPessoa));
         }
         return fotoPessoas;
+    }
+
+    @Override
+    public String getImageById(String image) throws Exception  {
+        return minioClient.getPresignedObjectUrl(
+                GetPresignedObjectUrlArgs.builder()
+                        .method(Method.GET)
+                        .bucket(BUCKET_NAME)
+                        .object(image)
+                        .expiry(300)
+                        .build()
+        );
     }
 }

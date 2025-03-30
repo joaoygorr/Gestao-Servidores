@@ -5,7 +5,6 @@ import br.com.gestaoServidores.modules.Cidade;
 import br.com.gestaoServidores.modules.Pessoa;
 import br.com.gestaoServidores.repositories.PessoaRepository;
 import br.com.gestaoServidores.services.cidade.CidadeService;
-import br.com.gestaoServidores.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +17,9 @@ public class PessoaServiceImpl implements PessoaService {
 
     private final CidadeService cidadeService;
 
-    private final UserService userService;
-
     @Transactional
     @Override
     public Pessoa createPerson(Pessoa pessoa) {
-        pessoa.setUser(this.userService.getLoggedUser());
         pessoa.getEnderecos().forEach(endereco -> {
             Cidade cidade = endereco.getCidade();
             endereco.setCidade(cidadeService.verifyAndCreateCity(cidade));

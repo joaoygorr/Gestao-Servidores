@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -38,30 +39,30 @@ public class FotoPessoaServiceImpl implements FotoPessoaService {
 
         for (MultipartFile image : dto.images()) {
             InputStream fileStream = image.getInputStream();
-            String fileName = image.getOriginalFilename();
+            String objectId = UUID.randomUUID().toString();
 
             PutObjectArgs putObjectArgs = PutObjectArgs.builder()
                     .bucket(BUCKET_NAME)
-                    .object(fileName)
+                    .object(objectId)
                     .stream(fileStream, fileStream.available(), -1)
                     .contentType(image.getContentType())
                     .build();
 
             ObjectWriteResponse res = minioClient.putObject(putObjectArgs);
 
-            FotoPessoa fotoPessoa = new FotoPessoa(pessoa, LocalDate.now(), res.bucket(), res.etag());
+            FotoPessoa fotoPessoa = new FotoPessoa(pessoa, LocalDate.now(), res.bucket(), objectId);
             fotoPessoas.add(this.fotoPessoaRepository.save(fotoPessoa));
         }
         return fotoPessoas;
     }
 
     @Override
-    public String getImageById(String image) throws Exception  {
+    public String getImageById(String hash) throws Exception  {
         return minioClient.getPresignedObjectUrl(
                 GetPresignedObjectUrlArgs.builder()
                         .method(Method.GET)
                         .bucket(BUCKET_NAME)
-                        .object(image)
+                        .object(hash)
                         .expiry(300)
                         .build()
         );

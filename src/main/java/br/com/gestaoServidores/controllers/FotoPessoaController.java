@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/fotoPessoa")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 @Tag(name = "Foto Pessoa", description = "Endpoint relacionado a Foto Pessoa")
 public class FotoPessoaController {
 
@@ -40,9 +41,9 @@ public class FotoPessoaController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Busca uma imagem pelo seu nome", description = "Retorna um link com duração de 5 minutos")
-    public Object getImageByName(@RequestParam String image) {
+    public Object getImageByName(@RequestParam String hash) {
         try {
-            return this.fotoPessoaService.getImageById(image);
+            return this.fotoPessoaService.getImageById(hash);
         } catch (Exception e) {
             return new Exception(e.getMessage());
         }

@@ -9,5 +9,5 @@ public interface FotoPessoaService {
 
     List<FotoPessoa> upload(FotoPessoaDTO dto) throws Exception;
 
-    String getImageById(String image) throws Exception;
+    String getImageById(String hash) throws Exception;
 }

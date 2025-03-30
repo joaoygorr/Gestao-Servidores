@@ -2,6 +2,7 @@ package br.com.gestaoServidores.controllers;
 
 import br.com.gestaoServidores.core.mappers.ServidorEfetivoMapper;
 import br.com.gestaoServidores.modules.ServidorEfetivo;
+import br.com.gestaoServidores.record.servidorEfetivo.ServidorDTO;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEfetivoDTO;
 import br.com.gestaoServidores.record.servidorEfetivo.ServidorEnderecoDTO;
 import br.com.gestaoServidores.services.servidorEfetivo.ServidorEfetivoService;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -72,5 +74,16 @@ public class ServidorEfetivoController {
     public ResponseEntity<List<ServidorEnderecoDTO>> getByServerAndPersonName(@RequestParam String nome) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(this.efetivoMapper.toServidorEnderecoList(this.efetivoService.findByServidorAndPessoaNome(nome)));
+    }
+
+    @GetMapping("/servidor/unidade/{unitId}")
+    @Operation(summary = "Retorna dados do servidor", description = "Busca dados do servidor através do id de uma unidade")
+    public ResponseEntity<List<ServidorDTO>> getByIdUnitAndServer(@PathVariable Long unitId) {
+        try {
+            List<ServidorDTO> servidores = this.efetivoService.getServerByUnit(unitId);
+            return ResponseEntity.status(HttpStatus.OK).body(servidores);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
+        }
     }
 }

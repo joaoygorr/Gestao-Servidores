@@ -40,10 +40,10 @@ public class FotoPessoaController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Busca uma imagem pelo seu nome", description = "Retorna um link com duração de 5 minutos")
+    @Operation(summary = "Busca uma imagem pelo seu hash", description = "Retorna um link com duração de 5 minutos")
     public Object getImageByName(@RequestParam String hash) {
         try {
-            return this.fotoPessoaService.getImageById(hash);
+            return this.fotoPessoaService.getImageByhash(hash);
         } catch (Exception e) {
             return new Exception(e.getMessage());
         }

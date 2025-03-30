@@ -57,7 +57,7 @@ public class FotoPessoaServiceImpl implements FotoPessoaService {
     }
 
     @Override
-    public String getImageById(String hash) throws Exception  {
+    public String getImageByhash(String hash) throws Exception  {
         return minioClient.getPresignedObjectUrl(
                 GetPresignedObjectUrlArgs.builder()
                         .method(Method.GET)

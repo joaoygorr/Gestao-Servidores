@@ -1,13 +1,10 @@
 package br.com.gestaoServidores.controllers;
 
-import br.com.gestaoServidores.core.exceptions.Exception404;
 import br.com.gestaoServidores.core.mappers.UserMapper;
-import br.com.gestaoServidores.modules.User;
 import br.com.gestaoServidores.record.user.UserAuthDTO;
 import br.com.gestaoServidores.record.user.UserDTO;
 import br.com.gestaoServidores.record.user.UserLoginDTO;
 import br.com.gestaoServidores.record.user.UserRefreshDTO;
-import br.com.gestaoServidores.repositories.UserRepository;
 import br.com.gestaoServidores.services.token.TokenService;
 import br.com.gestaoServidores.services.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,8 +26,6 @@ public class AuthController {
     private final UserService userService;
 
     private final UserMapper userMapper;
-
-    private final UserRepository userRepository;
 
     private final TokenService tokenService;
 
@@ -54,18 +49,6 @@ public class AuthController {
     @PostMapping("/refresh-token")
     @Operation(summary = "Renovar o token de autenticação", description = "Renova o token JWT utilizando um refresh token válido.")
     public ResponseEntity<UserRefreshDTO> refreshToken(@RequestBody String refreshToken) {
-        String email = this.tokenService.validateToken(refreshToken);
-
-        if (email == null) {
-            throw new RuntimeException("Refresh token inválido ou expirado");
-        }
-
-        User user = this.userRepository.findByEmail(email)
-                .orElseThrow(() -> new Exception404("Usuário não encontrado"));
-
-        String token = this.tokenService.generateToken(user);
-
-        UserRefreshDTO userAuthDTO = new UserRefreshDTO(token, refreshToken);
-        return ResponseEntity.status(HttpStatus.OK).body(userAuthDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(this.tokenService.refreshToken(refreshToken));
     }
 }

@@ -1,6 +1,7 @@
 package br.com.gestaoServidores.services.token;
 
 import br.com.gestaoServidores.modules.User;
+import br.com.gestaoServidores.record.user.UserRefreshDTO;
 
 public interface TokenService {
 
@@ -9,4 +10,6 @@ public interface TokenService {
     String validateToken(String token);
 
     String generateRefreshToken(String token);
+
+    UserRefreshDTO refreshToken(String token);
 }

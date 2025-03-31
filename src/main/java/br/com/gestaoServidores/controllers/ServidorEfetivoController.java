@@ -77,7 +77,7 @@ public class ServidorEfetivoController {
     }
 
     @GetMapping("/servidor/unidade/{unitId}")
-    @Operation(summary = "Retorna dados do servidor", description = "Busca dados do servidor através do id de uma unidade")
+    @Operation(summary = "Retorna dados do servidor", description = "Busca dados do servidor através do id de uma unidade vinculada a uma lotação")
     public ResponseEntity<List<ServidorDTO>> getByIdUnitAndServer(@PathVariable Long unitId) {
         try {
             List<ServidorDTO> servidores = this.efetivoService.getServerByUnit(unitId);

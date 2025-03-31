@@ -25,5 +25,17 @@ services:
     volumes:
       - minio_data:/data
 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gestaoServidoresApi
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
 volumes:
   minio_data:

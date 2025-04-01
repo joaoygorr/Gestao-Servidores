@@ -51,4 +51,40 @@ cd gestaoServidores
 A documentação da API está disponível via **Swagger**. Após iniciar o servidor acesse:
 [Documentação](http://localhost:8080/api/swagger-ui.html)
 
-## 
+# Guia de Uso da API
+
+Este documento descreve os requisitos necessários para utilização dos endpoints da API.
+
+## Autenticação
+
+Para utilizar os endpoints da API, é necessário realizar o login. Apenas usuários autenticados poderão acessar os recursos.
+
+## Cadastro de Recursos
+
+### 1. Cadastro de Pessoas
+Antes de cadastrar outros recursos, é necessário cadastrar uma pessoa na API.
+
+### 2. Cadastro de Servidores
+Para cadastrar um servidor, é obrigatório que uma pessoa já esteja cadastrada.
+
+### 3. Cadastro de Lotação
+O cadastro de uma lotação requer:
+- Uma pessoa previamente cadastrada
+- Uma unidade cadastrada
+
+### 4. Cadastro de Foto da Pessoa
+Para associar uma foto a um registro, a pessoa deve estar previamente cadastrada.
+
+## Fluxo de Cadastro
+1. **Realizar o login**
+2. **Cadastrar uma pessoa**
+3. **Cadastrar um servidor (se aplicável)**
+4. **Cadastrar uma unidade**
+5. **Cadastrar uma lotação vinculando a pessoa e a unidade**
+6. **Cadastrar a foto da pessoa (opcional)**
+
+Certifique-se de seguir essa ordem para evitar erros durante o processo de cadastro.
+
+---
+Este guia tem como objetivo facilitar a compreensão do funcionamento da API e garantir que os cadastros sejam realizados corretamente.
+

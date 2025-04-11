@@ -1,7 +1,8 @@
 # Gestão de Servidores
 
-Este projeto implementa um CRUD para gerenciamento de servidores efetivos e temporários, pessoas, fotos, unidades e lotações. Além disso, inclui um sistema de autenticação baseado em JWT para proteger as rotas da API.
+Este projeto é a solução de um teste técnico que implementa uma API com operações de CRUD para gerenciamento de servidores efetivos e temporários, pessoas, fotos, unidades e lotações. Além disso, a aplicação inclui um sistema de autenticação baseado em JWT para proteger as rotas da API.
 
+O projeto também utiliza o [Minio](https://min.io/) para o armazenamento e gerenciamento de arquivos, como fotos dos usuários.
 ---
 
 ## 🚀 Pré-requisitos
